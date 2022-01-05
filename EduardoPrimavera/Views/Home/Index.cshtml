@@ -1,0 +1,49 @@
+﻿@section scripts {
+    @Scripts.Render("~/bundles/app")
+}
+
+<div class="page-header">
+    <h1>Benefits</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Benefits</h2>
+            </div>
+            <div class="panel-body">
+                <ul class="list-unstyled" data-bind="foreach: benefits">
+                    <li>
+                        <strong>
+                            <span data-bind="text: Name">
+                            </span>
+                        </strong>:
+                        <span data-bind="text: City.Name"></span>
+                        <span> - </span>
+                        <span data-bind="text: Category.Name"></span>
+                        <small><a href="#" data-bind="click: $parent.getBenefitDetail">Details</a></small>
+                    </li>
+                    <hr />
+                </ul>
+            </div>
+        </div>
+        <div class="alert alert-danger" data-bind="visible: error"><p data-bind="text: error"></p></div>
+    </div>
+    <!-- ko if:detail() -->
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Detail</h2>
+            </div>
+            <table class="table">
+                <tr><td>Author</td><td data-bind="text: detail().Name"></td></tr>
+            </table>
+            <a href="#" class="btn btn-default" data-bind="click: redirect">Edit</a>
+        </div>
+    </div>
+    <!-- /ko -->
+    <div class="col-md-4">
+        <!-- TODO: Add new book -->
+    </div>
+</div>
