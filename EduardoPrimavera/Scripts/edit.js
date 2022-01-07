@@ -7,7 +7,8 @@ var ViewModel = function () {
     self.cities = ko.observableArray();
     self.categories = ko.observableArray();
     self.documents = ko.observableArray();
-    
+    self.document = ko.observable();
+
 
     self.nBenefit = {
         Name: ko.observable(),
@@ -16,6 +17,8 @@ var ViewModel = function () {
         City: ko.observable()
     }
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const myParam = urlParams.get('id');
     var benefitsUri = '/api/benefits/';
     var categoriesUri = '/api/Categories/';
     var citiesUri = '/api/Cities/';
@@ -37,22 +40,31 @@ var ViewModel = function () {
     }
 
     function getBenefitDetail() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const myParam = urlParams.get('id');
-        ajaxHelper(benefitsUri + myParam, 'GET').done(function (data) {         
+
+        ajaxHelper(benefitsUri + myParam, 'GET').done(function (data) {
             self.detail(data);
             $("#inputname").val(self.detail().Name);
             $("#inputDescription").val(self.detail().Description);
         });
-        //ajaxHelper(documentsIdUri + myParam, 'GET').done(function (data) {
-        //    self.documents(data);
-        //    console.log(self.documents());
-        //});
+        ajaxHelper(documentsIdUri + myParam, 'GET').done(function (data) {
+            self.documents(data);
+        });
     }
 
     self.deleteDocument = function (item) {
-        ajaxHelper(documentsUri + item.Id, 'Delete').done(function (data) {
+        ajaxHelper(documentsUri + item.Id, 'DELETE').done(function (data) {
             console.log("Deleted");
+            ajaxHelper(documentsIdUri + myParam, 'GET', myParam).done(function (data) {
+                self.documents(data);
+            });
+        });
+    }
+
+    self.downloadDocument = function (item) {
+        ajaxHelper(documentsUri + item.Id, 'GET').done(function (data) {
+            self.document(data);
+            console.log(self.document());
+            download(self.document().File, self.document().Name, "application/pdf" );
         });
     }
 

@@ -46,7 +46,15 @@
         </div>
     </div>
     <!-- /ko -->
-    <div class="col-md-4">
-        <!-- TODO: Add new book -->
+    <div class="panel-body">
+        <ul class="list-unstyled" data-bind="foreach: documents">
+            <li>
+                <strong>
+                    <span data-bind="text: Name">
+                    </span>
+                </strong>:
+                <small><a href="#" data-bind="click: $parent.downloadDocument">Download</a></small>
+            </li>
+        </ul>
     </div>
 </div>

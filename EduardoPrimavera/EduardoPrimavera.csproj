@@ -182,6 +182,7 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\DocumentDTO.cs" />
     <Compile Include="Models\Document.cs" />
     <Compile Include="Models\EduardoPrimaveraContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -196,6 +197,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\add.js" />
+    <Content Include="Scripts\download.js" />
     <Content Include="ToDo.txt" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap.js" />
