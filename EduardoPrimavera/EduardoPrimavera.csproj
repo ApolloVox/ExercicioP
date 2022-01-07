@@ -165,15 +165,17 @@
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\CitiesController.cs" />
     <Compile Include="Controllers\CountriesController.cs" />
+    <Compile Include="Controllers\AddController.cs" />
+    <Compile Include="Controllers\CustomeDocController.cs" />
     <Compile Include="Controllers\DocumentsController.cs" />
     <Compile Include="Controllers\EditController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202201041626509_Initial.cs" />
-    <Compile Include="Migrations\202201041626509_Initial.Designer.cs">
-      <DependentUpon>202201041626509_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\202201061942359_Initial.cs" />
+    <Compile Include="Migrations\202201061942359_Initial.Designer.cs">
+      <DependentUpon>202201061942359_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Benefit.cs" />
@@ -193,6 +195,8 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\add.js" />
+    <Content Include="ToDo.txt" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -239,6 +243,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Edit\Index.cshtml" />
+    <Content Include="Views\Add\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -273,8 +278,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202201041626509_Initial.resx">
-      <DependentUpon>202201041626509_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202201061942359_Initial.resx">
+      <DependentUpon>202201061942359_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

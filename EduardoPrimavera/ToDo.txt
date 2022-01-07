@@ -1,0 +1,11 @@
+﻿- Criar nov benefici
+- Delete Beneficio
+- edit outras componentes:
+	.City
+	.Country
+	.Category
+- Delte outras componentes:
+	.City
+	.Country
+	.Category
+- Meter Bonito

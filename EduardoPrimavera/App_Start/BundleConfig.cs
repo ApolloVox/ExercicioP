@@ -30,6 +30,10 @@ namespace EduardoPrimavera
             bundles.Add(new ScriptBundle("~/bundles/edit").Include(
                       "~/Scripts/knockout-{version}.js",
                       "~/Scripts/edit.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/add").Include(
+                      "~/Scripts/knockout-{version}.js",
+                      "~/Scripts/add.js"));
         }
     }
 }
