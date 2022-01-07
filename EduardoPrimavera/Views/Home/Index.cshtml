@@ -31,7 +31,7 @@
         <div class="alert alert-danger" data-bind="visible: error"><p data-bind="text: error"></p></div>
     </div>
     <!-- ko if:detail() -->
-    <div class="col-md-4">
+    <div id="itemDetail" class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h2 class="panel-title">Detail</h2>
@@ -40,6 +40,9 @@
                 <tr><td>Author</td><td data-bind="text: detail().Name"></td></tr>
             </table>
             <a href="#" class="btn btn-default" data-bind="click: redirect">Edit</a>
+            <a href="#" class="btn btn-default" data-bind="click: del">Delete</a>
+            <div class="alert alert-danger" data-bind="visible: error"><p data-bind="text: error"></p></div>
+            <div class="alert alert-success" data-bind="visible: sucess"><p data-bind="text: sucess"></p></div>
         </div>
     </div>
     <!-- /ko -->

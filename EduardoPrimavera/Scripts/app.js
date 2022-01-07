@@ -4,11 +4,13 @@ var ViewModel = function () {
     self.benefits = ko.observableArray();
     self.error = ko.observable();
     self.detail = ko.observable();
+    self.sucess = ko.observable();
 
     var benefitsUri = '/api/benefits/';
 
     function ajaxHelper(uri, method, data) {
         self.error(''); // Clear error message
+        self.sucess('');
         return $.ajax({
             type: method,
             url: uri,
@@ -29,14 +31,23 @@ var ViewModel = function () {
 
     self.getBenefitDetail = function (item) {
         self.detail(item);
+        $("#itemDetail").removeClass("invisible");
     }
 
-    self.redirect = function (item) {
+    self.redirect = function () {
         redURL();
     }
 
     function redURL() {
         window.open("/Edit?id=" + self.detail().Id, "_blank")
+    }
+
+    self.del = function () {
+        ajaxHelper(benefitsUri + self.detail().Id, 'DELETE', self.detail().Id ).done(function (data) {
+            self.sucess("Sucesso!");
+            getAllBenefits();
+            $("#itemDetail").addClass("invisible");
+        });
     }
     // Fetch the initial data.
     getAllBenefits();

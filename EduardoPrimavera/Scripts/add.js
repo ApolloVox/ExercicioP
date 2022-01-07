@@ -1,4 +1,4 @@
-﻿//Edit
+﻿//Add
 var ViewModel = function () {
     var self = this;
     self.error = ko.observable();
@@ -6,21 +6,21 @@ var ViewModel = function () {
     self.detail = ko.observable();
     self.cities = ko.observableArray();
     self.categories = ko.observableArray();
-    self.documents = ko.observableArray();
-    
+    self.files = ko.observableArray();
+
 
     self.nBenefit = {
         Name: ko.observable(),
         Description: ko.observable(),
         Category: ko.observable(),
-        City: ko.observable()
+        City: ko.observable(),
+        Documents: ko.observableArray()
     }
 
     var benefitsUri = '/api/benefits/';
     var categoriesUri = '/api/Categories/';
     var citiesUri = '/api/Cities/';
     var documentsUri = '/api/Documents/';
-    var documentsIdUri = 'api/CustomeDoc/';
 
     function ajaxHelper(uri, method, data) {
         self.error(''); // Clear error message
@@ -36,29 +36,8 @@ var ViewModel = function () {
         });
     }
 
-    function getBenefitDetail() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const myParam = urlParams.get('id');
-        ajaxHelper(benefitsUri + myParam, 'GET').done(function (data) {         
-            self.detail(data);
-            $("#inputname").val(self.detail().Name);
-            $("#inputDescription").val(self.detail().Description);
-        });
-        //ajaxHelper(documentsIdUri + myParam, 'GET').done(function (data) {
-        //    self.documents(data);
-        //    console.log(self.documents());
-        //});
-    }
-
-    self.deleteDocument = function (item) {
-        ajaxHelper(documentsUri + item.Id, 'Delete').done(function (data) {
-            console.log("Deleted");
-        });
-    }
-
     function getAllCities() {
         ajaxHelper(citiesUri, 'GET').done(function (data) {
-            console.log(data);
             self.cities(data);
         });
     }
@@ -70,24 +49,43 @@ var ViewModel = function () {
         });
     }
 
-    self.editBenefit = function (formElement) {
+    self.addBenefit = function (formElement) {
+
         var benefit = {
             Name: self.nBenefit.Name() ? self.nBenefit.Name() : self.detail().Name,
             Description: self.nBenefit.Description() ? self.nBenefit.Description() : self.detail().Description,
             CityId: self.nBenefit.City().Id,
-            CategoryId: self.nBenefit.Category().Id,
-            Id: self.detail().Id
+            CategoryId: self.nBenefit.Category().Id
         };
-        console.log(benefit);
 
-        ajaxHelper(benefitsUri + self.detail().Id, 'PUT', benefit).done(function (item) {
-            self.sucess("Sucesso!");
+        ajaxHelper(benefitsUri, 'POST', benefit).done(function (item) {
+            var files = $('#inputFile')[0].files;
+            for (let i = 0; i < files.length; i++) {
 
+                const toBase64 = file => new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.readAsDataURL(file);
+                    reader.onload = () => resolve(reader.result);
+                    reader.onerror = error => reject(error);
+                });
+
+                toBase64(files.item(i)).then(function (a) {
+                    var document = {
+                        Name: files.item(i).name,
+                        File: a,
+                        BenefitId: item.Id
+                    };
+                    ajaxHelper(documentsUri, 'POST', document).done(function (item2) {
+                        if (i + 1 == files.length) {
+                            self.sucess("Sucesso!");
+                        }
+                    });
+                });
+            }          
         });
     }
 
     // Fetch the initial data.
-    getBenefitDetail();
     getAllCities();
     getAllCategories();
 };

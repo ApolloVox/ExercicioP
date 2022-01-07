@@ -1,15 +1,15 @@
 ﻿@model EduardoPrimavera.Models.Benefit
 
 @section Scripts {
-    @Scripts.Render("~/bundles/edit")
+    @Scripts.Render("~/bundles/add")
 }
 @{
-    ViewBag.Title = "EditBenefit";
+    ViewBag.Title = "AddBenefit";
 }
 
-<h2>EditBenefit</h2>
+<h2>AddBenefit</h2>
 
-<form class="form-horizontal" data-bind="submit: editBenefit">
+<form class="form-horizontal" data-bind="submit: addBenefit">
     <div class="form-group">
         <label for="inputAuthor" class="col-sm-2 control-label">City</label>
         <div class="col-sm-10">
@@ -35,17 +35,12 @@
             <input type="text" class="form-control" id="inputDescription" data-bind="value: Description" />
         </div>
 
-    </div>
-    <div class="panel-body">
-        <ul class="list-unstyled" data-bind="foreach: documents">
-            <li>
-                <strong>
-                    <span data-bind="text: Name">
-                    </span>
-                </strong>:
-                <small><a href="#" data-bind="click: $parent.deleteDocument">Delete</a></small>
-            </li>
-        </ul>
+        <label for="inputFile" class="col-sm-2 control-label">File</label>
+        <div class="col-sm-10">
+            <input type="file" accept="application/pdf,application/vnd.ms-excel" class="form-control" id="inputFile" multiple />
+        </div>
+
+
     </div>
     <div class="alert alert-danger" data-bind="visible: error"><p data-bind="text: error"></p></div>
     <div class="alert alert-success" data-bind="visible: sucess"><p data-bind="text: sucess"></p></div>
@@ -55,3 +50,5 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+

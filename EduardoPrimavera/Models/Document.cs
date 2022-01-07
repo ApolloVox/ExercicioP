@@ -11,6 +11,7 @@ namespace EduardoPrimavera.Models
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
+        public string File { get; set; }
         // Foreign Key
         public int BenefitId { get; set; }
         // Navigation property

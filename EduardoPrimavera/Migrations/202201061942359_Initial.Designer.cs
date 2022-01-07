@@ -13,7 +13,7 @@ namespace EduardoPrimavera.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202201041626509_Initial"; }
+            get { return "202201061942359_Initial"; }
         }
         
         string IMigrationMetadata.Source
