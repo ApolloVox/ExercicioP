@@ -23,6 +23,9 @@ namespace EduardoPrimavera
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
+            bundles.Add(new ScriptBundle("~/bundles/security").Include(
+                      "~/Scripts/security.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                       "~/Scripts/knockout-{version}.js",
                       "~/Scripts/app.js",
@@ -36,6 +39,10 @@ namespace EduardoPrimavera
             bundles.Add(new ScriptBundle("~/bundles/add").Include(
                       "~/Scripts/knockout-{version}.js",
                       "~/Scripts/add.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/login").Include(
+          "~/Scripts/knockout-{version}.js",
+          "~/Scripts/login.js"));
         }
     }
 }

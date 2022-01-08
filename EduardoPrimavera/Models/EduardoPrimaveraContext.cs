@@ -28,5 +28,7 @@ namespace EduardoPrimavera.Models
         public System.Data.Entity.DbSet<EduardoPrimavera.Models.Country> Countries { get; set; }
 
         public System.Data.Entity.DbSet<EduardoPrimavera.Models.Document> Documents { get; set; }
+
+        public System.Data.Entity.DbSet<EduardoPrimavera.Models.User> Users { get; set; }
     }
 }

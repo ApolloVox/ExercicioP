@@ -169,19 +169,23 @@
     <Compile Include="Controllers\CustomeDocController.cs" />
     <Compile Include="Controllers\DocumentsController.cs" />
     <Compile Include="Controllers\EditController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SessionController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202201061942359_Initial.cs" />
-    <Compile Include="Migrations\202201061942359_Initial.Designer.cs">
-      <DependentUpon>202201061942359_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\202201081533187_Initial.cs" />
+    <Compile Include="Migrations\202201081533187_Initial.Designer.cs">
+      <DependentUpon>202201081533187_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Benefit.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Models\DocumentDTO.cs" />
     <Compile Include="Models\Document.cs" />
     <Compile Include="Models\EduardoPrimaveraContext.cs" />
@@ -196,6 +200,8 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\login.js" />
+    <Content Include="Scripts\security.js" />
     <Content Include="Scripts\add.js" />
     <Content Include="Scripts\download.js" />
     <Content Include="ToDo.txt" />
@@ -246,6 +252,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Edit\Index.cshtml" />
     <Content Include="Views\Add\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -280,8 +287,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202201061942359_Initial.resx">
-      <DependentUpon>202201061942359_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202201081533187_Initial.resx">
+      <DependentUpon>202201081533187_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

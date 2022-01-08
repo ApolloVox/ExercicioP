@@ -13,7 +13,7 @@ using EduardoPrimavera.Models;
 
 namespace EduardoPrimavera.Controllers
 {
-    public class BenefitsController : ApiController
+    public class BenefitsController : SessionController
     {
         private EduardoPrimaveraContext db = new EduardoPrimaveraContext();
 
@@ -27,14 +27,19 @@ namespace EduardoPrimavera.Controllers
         [ResponseType(typeof(Benefit))]
         public async Task<IHttpActionResult> GetBenefit(int id)
         {
+            if (!SessionAuthentication())
+            {
+                return StatusCode(HttpStatusCode.Unauthorized);
+            }
             Benefit benefit = await db.Benefits.FindAsync(id);
             if (benefit == null)
             {
                 return NotFound();
             }
-
             return Ok(benefit);
         }
+
+
 
         // PUT: api/Benefits/5
         [ResponseType(typeof(void))]

@@ -35,6 +35,11 @@
             <input type="text" class="form-control" id="inputDescription" data-bind="value: Description" />
         </div>
 
+        <label for="inputFile" class="col-sm-2 control-label">File</label>
+        <div class="col-sm-10">
+            <input type="file" accept="application/pdf" class="form-control" id="inputFile" multiple />
+        </div>
+
     </div>
     <div class="panel-body">
         <ul class="list-unstyled" data-bind="foreach: documents">

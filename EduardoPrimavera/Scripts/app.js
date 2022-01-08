@@ -10,7 +10,7 @@ var ViewModel = function () {
 
     var benefitsUri = '/api/benefits/';
     var documentsUri = '/api/Documents/';
-    var documentsIdUri = 'api/CustomeDoc/';
+    var documentsIdUri = '/api/CustomeDoc/';
 
     function ajaxHelper(uri, method, data) {
         self.error(''); // Clear error message
@@ -29,13 +29,17 @@ var ViewModel = function () {
     function getAllBenefits() {
         ajaxHelper(benefitsUri, 'GET').done(function (data) {
             self.benefits(data);
-            console.log(self.benefits());
         });
     }
 
     self.getBenefitDetail = function (item) {
         self.detail(item);
         $("#itemDetail").removeClass("invisible");
+        getDocuments();
+    }
+
+    function getDocuments() {
+        console.log(documentsIdUri + self.detail().Id);
         ajaxHelper(documentsIdUri + self.detail().Id, 'GET').done(function (data) {
             self.documents(data);
         });
@@ -44,7 +48,6 @@ var ViewModel = function () {
     self.downloadDocument = function (item) {
         ajaxHelper(documentsUri + item.Id, 'GET').done(function (data) {
             self.document(data);
-            console.log(self.document());
             download(self.document().File, self.document().Name, "application/pdf");
         });
     }
@@ -54,7 +57,7 @@ var ViewModel = function () {
     }
 
     function redURL() {
-        window.open("/Edit?id=" + self.detail().Id, "_blank")
+        window.open("/Edit?id=" + self.detail().Id, "_blank");
     }
 
     self.del = function () {

@@ -17,7 +17,7 @@ namespace EduardoPrimavera.Controllers
     public class CustomeDocController : ApiController
     {
         private EduardoPrimaveraContext db = new EduardoPrimaveraContext();
-        // Typed lambda expression for Select() method. 
+
         private static readonly Expression<Func<Document, DocumentDTO>> AsDocumentDTO =
             x => new DocumentDTO
             {
@@ -25,6 +25,7 @@ namespace EduardoPrimavera.Controllers
                 Name = x.Name,
                 BenefitId = x.BenefitId
             };
+
         // GET: api/CustomeDoc/5
         public IQueryable<DocumentDTO> GetDocument(int id)
         {
