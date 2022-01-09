@@ -95,7 +95,6 @@ var ViewModel = function () {
             CategoryId: self.nBenefit.Category().Id,
             Id: self.detail().Id
         };
-
         ajaxHelper(benefitsUri + self.detail().Id, 'PUT', benefit).done(function (item) {
             var files = $('#inputFile')[0].files;
             for (let i = 0; i < files.length; i++) {

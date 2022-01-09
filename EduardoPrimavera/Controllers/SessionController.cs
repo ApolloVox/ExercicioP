@@ -8,11 +8,11 @@ using System.Web.Http;
 
 namespace EduardoPrimavera.Controllers
 {
-    public class SessionController : ApiController
+    public class SessionController
     {
         private EduardoPrimaveraContext db = new EduardoPrimaveraContext();
 
-        public bool SessionAuthentication()
+        public bool SessionAuthentication(HttpRequestMessage Request)
         {
             string cookieName = "session";
             var vCookies = Request.Headers.Where(H => H.Key.ToLower() == "cookie");
@@ -25,7 +25,6 @@ namespace EduardoPrimavera.Controllers
                         vArrCookie.FirstOrDefault().Split(new char[] { ';' }).Where(C => C.Trim().StartsWith(cookieName)).FirstOrDefault();
                     if (vCookiePair != null)
                     {
-                        //System.Diagnostics.Debug.WriteLine(vCookiePair);
                         var vCookie = vCookiePair.Trim().Substring(cookieName.Length + 1);
                         if (vCookie != null)
                         {

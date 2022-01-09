@@ -13,9 +13,10 @@ using EduardoPrimavera.Models;
 
 namespace EduardoPrimavera.Controllers
 {
-    public class BenefitsController : SessionController
+    public class BenefitsController : ApiController
     {
         private EduardoPrimaveraContext db = new EduardoPrimaveraContext();
+        private SessionController sessionControler = new SessionController();
 
         // GET: api/Benefits
         public IQueryable<Benefit> GetBenefits()
@@ -27,7 +28,7 @@ namespace EduardoPrimavera.Controllers
         [ResponseType(typeof(Benefit))]
         public async Task<IHttpActionResult> GetBenefit(int id)
         {
-            if (!SessionAuthentication())
+            if (!sessionControler.SessionAuthentication(Request))
             {
                 return StatusCode(HttpStatusCode.Unauthorized);
             }
@@ -36,18 +37,22 @@ namespace EduardoPrimavera.Controllers
             {
                 return NotFound();
             }
+
             return Ok(benefit);
         }
 
-
-
         // PUT: api/Benefits/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutBenefit(Benefit benefit)
+        public async Task<IHttpActionResult> PutBenefit(int id, Benefit benefit)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
+            }
+
+            if (id != benefit.Id)
+            {
+                return BadRequest();
             }
 
             db.Entry(benefit).State = EntityState.Modified;
@@ -58,7 +63,7 @@ namespace EduardoPrimavera.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!BenefitExists(benefit.Id))
+                if (!BenefitExists(id))
                 {
                     return NotFound();
                 }
