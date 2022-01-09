@@ -1,7 +1,7 @@
 # Technical Exercise!
 ##  Instruções
 
-1. Abrir a solução no Visual Studio, e executar no 'Package Manager Console'  `update-database`;
+1. Abrir a solução no Visual Studio, e executar no 'Package Manager Console' `add-migration Initial` seguido de `update-database`;
 
 2. Abrir o cliente da aplicação *web* inicializando o projeto em Debug (F5);
 
