@@ -36,7 +36,6 @@ var ViewModel = function () {
             data: data ? JSON.stringify(data) : null
         }).fail(function (jqXHR, textStatus, errorThrown) {
             if (jqXHR.Status = 401) {
-                debugger
                 document.cookie = "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
                 window.checkCookie();
             }

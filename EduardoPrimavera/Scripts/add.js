@@ -17,7 +17,7 @@ var ViewModel = function () {
         Documents: ko.observableArray()
     }
 
-    var benefitsUri = '/api/benefits/';
+    var benefitsUri = '/api/Benefits/';
     var categoriesUri = '/api/Categories/';
     var citiesUri = '/api/Cities/';
     var documentsUri = '/api/Documents/';
@@ -32,6 +32,10 @@ var ViewModel = function () {
             contentType: 'application/json',
             data: data ? JSON.stringify(data) : null
         }).fail(function (jqXHR, textStatus, errorThrown) {
+            if (jqXHR.Status = 401) {
+                document.cookie = "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                window.checkCookie();
+            }
             self.error(errorThrown);
         });
     }
@@ -50,14 +54,13 @@ var ViewModel = function () {
     }
 
     self.addBenefit = function (formElement) {
-
         var benefit = {
             Name: self.nBenefit.Name() ? self.nBenefit.Name() : self.detail().Name,
             Description: self.nBenefit.Description() ? self.nBenefit.Description() : self.detail().Description,
             CityId: self.nBenefit.City().Id,
             CategoryId: self.nBenefit.Category().Id
         };
-
+        debugger
         ajaxHelper(benefitsUri, 'POST', benefit).done(function (item) {
             var files = $('#inputFile')[0].files;
             for (let i = 0; i < files.length; i++) {
@@ -73,15 +76,16 @@ var ViewModel = function () {
                     var document = {
                         Name: files.item(i).name,
                         File: a,
-                        BenefitId: item.Id
+                        BenefitId: self.detail().Id
                     };
                     ajaxHelper(documentsUri, 'POST', document).done(function (item2) {
                         if (i + 1 == files.length) {
+                            getDocuments();
                             self.sucess("Sucesso!");
                         }
                     });
                 });
-            }          
+            }
         });
     }
 

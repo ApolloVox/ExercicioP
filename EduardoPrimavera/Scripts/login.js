@@ -1,4 +1,4 @@
-﻿//Edit
+﻿//login
 var ViewModel = function () {
     var self = this;
     self.error = ko.observable();
@@ -28,10 +28,8 @@ var ViewModel = function () {
             Name: self.loginUser.User(),
             Password: self.loginUser.Password()
         };
-        console.log(login);
 
         ajaxHelper(usersUri, 'POST', login).done(function (item) {
-            debugger
             const d = new Date();
             d.setTime(d.getTime() + (1 * 24 * 60 * 60 * 1000));
             let expires = "expires=" + d.toUTCString();

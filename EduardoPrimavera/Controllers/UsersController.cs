@@ -96,13 +96,13 @@ namespace EduardoPrimavera.Controllers
             byte[] session = hMACSHA1.ComputeHash(hashByte);
             string sessionHash = Convert.ToBase64String(session);
 
-            var teste = db.Users.Where(b => b.Name == user.Name).SingleOrDefault();
-            if (teste != null)
+            var userBd = db.Users.Where(b => b.Name == user.Name).SingleOrDefault();
+            if (userBd != null)
             {
-                if (teste.Password == passHash)
+                if (userBd.Password == passHash)
                 {
-                    teste.Session = sessionHash;
-                    db.Entry(teste).State = EntityState.Modified;
+                    userBd.Session = sessionHash;
+                    db.Entry(userBd).State = EntityState.Modified;
                     try
                     {
                         await db.SaveChangesAsync();
@@ -111,7 +111,7 @@ namespace EduardoPrimavera.Controllers
                     {
                         throw e;
                     }
-                    return Ok(teste.Session);
+                    return Ok(userBd.Session);
                 }
                 else
                     return NotFound();
